@@ -31,6 +31,7 @@ const HomePage = () => {
   const valueState = useState();
   return (
     <>
+      valueState = { valueState[0] }
       <h1>Hello World</h1>
       <CompA />
     </>
