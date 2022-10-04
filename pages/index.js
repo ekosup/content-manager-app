@@ -37,11 +37,21 @@ const HomePage = () => {
   // const setValue = valueState[1];
 
   const [value, setValue] = useState(10);  // assign 10 to valueState
+  // debugger // this command will stop the executable on the web
+
+  // each change of state will make the whole function being run from the beginning
+  console.log("I am called initially and will be called each time the state changed.")
+
+  const incrementValue = () => {
+    setValue(value + 1);
+  }
 
   return (
     <>
-      valueState = { valueState[0] }
-      <h1>Hello World</h1>
+      Current value = { value }
+      <button onClick={incrementValue}>+</button>
+      <button>-</button>
+
       <CompA />
     </>
   )
