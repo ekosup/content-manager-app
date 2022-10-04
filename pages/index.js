@@ -22,7 +22,7 @@ class CompC extends React.Component {
   //   value: 10,
   // }
 
-  // actually every react class component has their own constructor from super
+  // every react class component, has their own constructor derived from super
   constructor() {
     super();
     this.state = {
