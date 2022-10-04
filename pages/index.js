@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 // Simplified arrow function
 const ArrowFunction = params =>
@@ -26,7 +26,9 @@ class CompC extends React.Component {
   }
 }
 
+// use state returning array
 const HomePage = () => {
+  const valueState = useState();
   return (
     <>
       <h1>Hello World</h1>
