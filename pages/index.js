@@ -17,10 +17,38 @@ function CompA() {
 }
 
 class CompC extends React.Component {
+
+  // state = {
+  //   value: 10,
+  // }
+
+  // actually every react class component has their own constructor from super
+  constructor() {
+    super();
+    this.state = {
+      value: 10,  // it is the same example as above except we need to call super() function 
+    }
+  }
+
+  changeState(newValue) {
+    this.setState({
+      value: newValue,
+    })
+  }
+
+  // ntms: everytime state changes the whole function will be reexecuted
   render() {
+    // const value = this.state.value; // is the same as
+    const { value } = this.state;
+    // using above notation we can decompose as many as state parameter to their own variables
+    // e.g. const { value, a, b, c} = this.state;  // with state = {value:10, a:9, b:8, c:7}
+
     return (
       <>
         <h1>CompC</h1>
+        Current value = { value }
+        <button onClick={() => this.changeState(value+1)}>+</button>
+        <button onClick={() => this.changeState(value-1)}>-</button>
       </>
     )
   }
@@ -58,7 +86,7 @@ const HomePage = () => {
       <button onClick={() => setValue(value+1)}>+</button>
       <button onClick={() => setValue(value-1)}>-</button>
 
-      <CompA />
+      <CompC />
     </>
   )
 }
