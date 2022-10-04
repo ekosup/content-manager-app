@@ -28,7 +28,16 @@ class CompC extends React.Component {
 
 // use state returning array
 const HomePage = () => {
-  const valueState = useState();
+  // const valueState = useState();  // if we assign value state like on the side, then
+  // console.log(valueState);  // should return array of [undefined, f]
+  // console.log(valueState[0]);  // should return undefined
+
+  // const valueState = useState(10);  // assign 10 to valueState
+  // const value = valueState[0];
+  // const setValue = valueState[1];
+
+  const [value, setValue] = useState(10);  // assign 10 to valueState
+
   return (
     <>
       valueState = { valueState[0] }
