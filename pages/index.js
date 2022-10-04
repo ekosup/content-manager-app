@@ -37,20 +37,26 @@ const HomePage = () => {
   // const setValue = valueState[1];
 
   const [value, setValue] = useState(10);  // assign 10 to valueState
-  // debugger // this command will stop the executable on the web
+  // debugger // this debugger command stop the executable on the inspector like adding checkpoint on code
 
   // each change of state will make the whole function being run from the beginning
   console.log("I am called initially and will be called each time the state changed.")
 
-  const incrementValue = () => {
-    setValue(value + 1);
-  }
+  // const incrementValue = () => {
+  //   setValue(value + 1);
+  // }
 
+  // We can make both increment and decrement into one function below
+  // const valueChange = (incrementor) => {
+  //   setValue( value+incrementor );
+  // }
+  
+  // or even better we can just make it inside the onClick method which returning an arrow function
   return (
     <>
       Current value = { value }
-      <button onClick={incrementValue}>+</button>
-      <button>-</button>
+      <button onClick={() => setValue(value+1)}>+</button>
+      <button onClick={() => setValue(value-1)}>-</button>
 
       <CompA />
     </>
