@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Simplified arrow function
 const ArrowFunction = params =>
@@ -6,12 +6,18 @@ const ArrowFunction = params =>
     <h1>I am arrow function</h1>
   </div>
 
-function CompA() {
+
+function CompA(props) {
+// function CompA({myProp1}) {  // alternative by specifying the props name, so we can use it without mentioning props object
   return (
     <>
       <ArrowFunction />
       <h1>CompA</h1>
       <p>Hello component A</p>
+      <p>myProp1: {props.myProp1}</p>
+      <p>myProp2: {props.myProp2}</p>
+      <p>myProp3: {props.myProp3.toString()}</p>
+      <div>myProp4: {<props.myProp4 />}</div>
     </>
   )
 }
@@ -22,7 +28,7 @@ class CompC extends React.Component {
   //   value: 10,
   // }
 
-  // every react class component, has their own constructor derived from super
+  // every react class component,~ has their own constructor derived from super
   constructor() {
     super();
     this.state = {
@@ -43,15 +49,22 @@ class CompC extends React.Component {
     // using above notation we can decompose as many as state parameter to their own variables
     // e.g. const { value, a, b, c} = this.state;  // with state = {value:10, a:9, b:8, c:7}
 
+    const {MyProp1} = this.props;
+
     return (
       <>
         <h1>CompC</h1>
-        Current value = { value }
+        <h2>Current value = { value }</h2>
+        <MyProp1 />
         <button onClick={() => this.changeState(value+1)}>+</button>
         <button onClick={() => this.changeState(value-1)}>-</button>
       </>
     )
   }
+}
+
+function MyComponent() {
+  return <h1>My Componenttttttttttttttt</h1>
 }
 
 // use state returning array
@@ -70,6 +83,11 @@ const HomePage = () => {
   // each change of state will make the whole function being run from the beginning
   console.log("I am called initially and will be called each time the state changed.")
 
+  useEffect(() => {
+    console.log("Use effect is called")
+  }, [])  // if we dont specify on what element the use effect depend on then it will be called only once
+  // }, [value])  // if we specify, e.g. value then it will be called whenever the variable changed 
+
   // const incrementValue = () => {
   //   setValue(value + 1);
   // }
@@ -82,11 +100,19 @@ const HomePage = () => {
   // or even better we can just make it inside the onClick method which returning an arrow function
   return (
     <>
-      Current value = { value }
+      <h1>Rendered from Homepage</h1>
+      <h2>Current value = { value }</h2>
       <button onClick={() => setValue(value+1)}>+</button>
       <button onClick={() => setValue(value-1)}>-</button>
-
-      <CompC />
+      <CompA 
+        myProp1={value}
+        myProp2="My string value"
+        myProp3={true}
+        myProp4={() => <div>My New JSZ</div>}
+      />
+      <CompC 
+        MyProp1={MyComponent}
+      />
     </>
   )
 }
