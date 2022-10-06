@@ -9,7 +9,8 @@ export const resources = [
     image: "https://image.com",
     priority: 3,
     timeToFinish: 120,
-    active: true
+    active: true,
+    createdAt: "4 Sept 2022"
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ export const resources = [
     image: "https://image.com",
     priority: 3,
     timeToFinish: 120,
-    activity: false
+    activity: false,
+    createdAt: "4 Sept 2022"
   },
   {
     id: 3,
@@ -29,7 +31,7 @@ export const resources = [
     image: "https://image.com",
     priority: 3,
     timeToFinish: 120,
-    activity: false
-
+    activity: false,
+    createdAt: "4 Sept 2022"
   }
 ]
