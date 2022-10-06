@@ -1,4 +1,3 @@
-import { resources } from "api/data";
 
 function ResourceList({ resources }) {
   const renderResources = () => {
@@ -25,7 +24,6 @@ function ResourceList({ resources }) {
                 {renderResources()}
               </div>
             </section>
-
           </div>
         </div>
       </section>
