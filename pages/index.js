@@ -3,8 +3,10 @@ import ResourceHighlight from "components/ResourceHighlight";
 import Newsletter from "components/Newsletter";
 import Footer from "components/Footer";
 import ResourceList from "components/ResourceList";
+import { useEffect } from "react";
 
 function Home({resources}) {
+  
   return (
     <Layout>
       <ResourceHighlight 
