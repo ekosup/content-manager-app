@@ -66,7 +66,8 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       resource: data
-    }
+    },
+    revalidate: 1  // how often the page will updated
   }
 }
 
