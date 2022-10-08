@@ -2,6 +2,7 @@ import Layout from "components/Layout";
 import { GOOGLE_FONT_PROVIDER } from "next/dist/shared/lib/constants";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const DEFAULT_DATA = {
   title: "",
@@ -13,6 +14,7 @@ const DEFAULT_DATA = {
 
 const ResourceCreate = () => {
   const [form, setForm] = useState(DEFAULT_DATA);
+  const router = useRouter();
 
   const submitForm = () => {
     // alert(form.title+" takes "+form.timeToFinish+" to finish.");
@@ -22,7 +24,11 @@ const ResourceCreate = () => {
     //   headers: {"Content-Type": "application/json"},
     //   method: "POST"
     // })
-    axios.post("/api/resources", form);
+    axios.post("/api/resources", form)
+      .then(_ => router.push("/"))
+      .catch(err => {
+        alert(err?.response?.data)
+      });
   }
 
   const resetForm = () => setForm(DEFAULT_DATA);
