@@ -1,6 +1,6 @@
 html,
 body {
-  padding: 100px;
+  padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -23,4 +23,24 @@ a {
     color: white;
     background: black;
   }
+}
+
+.resource-form {
+  padding-top: 100px;
+}
+
+.active-resource {
+  background-color: #3140aa;
+  padding: 50px;
+  text-align: center;
+  color: white;
+}
+
+.active-resource .resource-name {
+  font-size: 30px;;
+}
+
+.active-resource .elapsed-time {
+  font-size: 64px;
+  font-weight: bold;
 }
