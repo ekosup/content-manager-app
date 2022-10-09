@@ -1,49 +1,52 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import React from 'react'
+import Layout from "components/Layout";
+import ResourceHighlight from "components/ResourceHighlight";
+import Newsletter from "components/Newsletter";
+import Footer from "components/Footer";
+import ResourceList from "components/ResourceList";
+import { useEffect } from "react";
 
-function CompA() {
+function Home({resources}) {
+  
   return (
-    <>
-      <h1>CompA</h1>
-      <p>Hello component A</p>
-      <CompB />
-    </>
+    <Layout>
+      <ResourceHighlight 
+        resources={resources.slice(0, 2)}
+      />
+      <Newsletter />
+      <ResourceList 
+        resources={resources.slice(2)}
+      />
+      <Footer />
+    </Layout>
   )
 }
 
-function CompB() {
-  return (
-    <>
-      <h1>CompB</h1>
-      <p>Hello component B</p>
-    </>
-  )
-}
+// this function will be called everytime we visit the page
+// function is executed on the server
+// data is alaways fresh
+// this code is executed in the server
+export async function getServerSideProps() {
 
-class CompC extends React.Component {
-  render() {
-    return (
-      <>
-        <h1>CompC</h1>
-      </>
-    )
+  const resData = await fetch("http://localhost:3000/api/resources");
+  const data = await resData.json();
+
+  return {
+    props: {
+      resources: data
+    }
   }
 }
 
-// If we are not using JSX
-function CompD() {
-  return React.createElement("h1", null, "Hello from react")
-}
 
-export default function Home() {
-  return (
-    <>
-      <h1>Hello World</h1>
-      <CompA />
-      <CompC />
-      <CompD />
-    </>
+// is called at the build time, and its called only once
+// export async function getStaticProps() {
+//   const resData = await fetch("http://localhost:3000/api/resources");
+//   const data = await resData.json();
+//   return {
+//     props: {
+//       resources: data
+//     }
+//   }
+// }
 
-  )
-}
+export default Home;
