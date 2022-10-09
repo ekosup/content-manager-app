@@ -16,7 +16,12 @@ const ResourceDetail = ({ resource }) => {
                     <p>{resource.description}</p>
                     <Link href="/">
                       <a className="button is-link">
-                        Home
+                        Cancel
+                      </a>
+                    </Link>
+                    <Link href={`/resources/${resource.id}/edit`} >
+                      <a className="button is-warning">
+                        Edit
                       </a>
                     </Link>
                   </div>
@@ -30,35 +35,7 @@ const ResourceDetail = ({ resource }) => {
   )
 }
 
-// export async function getServerSideProps({ params }) {
-
-//   const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
-//   const data = await dataRes.json()
-
-//   return {
-//     props: {
-//       data: data
-//     }
-//   }
-// }
-
-export async function getStaticPaths() {
-  const resData = await fetch("http://localhost:3001/api/resources");
-  const data = await resData.json();
-  const paths = data.map(resource => {
-    return {
-      params: { id: resource.id.toString() }
-    }
-  });
-
-  return {
-    paths,
-    // means that other routes will be redirected to 404 page
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
 
   const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
   const data = await dataRes.json()
@@ -66,8 +43,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       resource: data
-    },
-    revalidate: 1  // how often the page will updated
+    }
   }
 }
 
